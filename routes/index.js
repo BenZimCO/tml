@@ -2,6 +2,7 @@ var express = require('express');
 var authen = require('../models/authenticator');
 var select_box=require('../models/displaySelect_Box');
 var display_table = require('../models/shopData');
+const display_shop = require('../models/shop_display');
 var router = express.Router();
 //declare a variable
 // var ss;
@@ -51,7 +52,16 @@ router.post('/login', async function(req, res, next) {
                           notice:"Wrong username or password! Try again" });
   }
 });
+router.get('/back',async function(req, res, next) {
+  res.redirect('back')
+});
 
+router.get('/shop',async function(req, res, next) {
+  let table_string= await display_shop(0);
+  res.render('shop', {   title: 'ADMIN PAGE',
+                          name: 'Admin',
+                          table: table_string })
+});
 router.post('/select_shop', async function(req, res, next) {
   let shop_id= req.body.shop; 
   var  select_box_string = await select_box();

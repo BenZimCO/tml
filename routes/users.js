@@ -36,9 +36,10 @@ router.post('/functions', async function(req, res, next) {
   ssion=req.session;
   let product_id = req.body.id;
   console.log(product_id);
-  deleteFunc(product_id)
+  if(req.body.btt=="delete")deleteFunc(product_id)
+  else if(req.body.btt=="update")await updateProduct(req.body.id,req.body.name,req.body.price,req.body.quantity,req.body.shop_id);
   let username = ssion.user_id;
-  let shop_id = ssion.shop_id
+  let shop_id = req.body.shop_id
   let table_string = await display_table(shop_id)
   
   res.render('users', { title: 'USER PAGE', 

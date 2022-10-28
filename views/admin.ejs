@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html>
   <head>
-   
+    <script language="javascript">
+      setTimeout(function(){
+         window.location.reload(1);
+      }, 30000);
+      </script>
     <link rel='stylesheet' href='/stylesheets/users.css' />
     <style>
       body {
@@ -53,7 +57,7 @@
     <div id="mySidenav" class="sidenav">
       <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
       <a>Welcome <%= name %></a>
-    
+      <a href="/shop">Shop display</a>
       <a href="/logout" method="get">logout</a>
     </div>
     
